@@ -49,28 +49,22 @@ class GildedRose {
     }
 
     private void handleItemWithIncreasingQuality(Item item) {
-        if (item.quality < QUALITY_CEILING) {
+        increaseQualityOf(item);
 
-            increaseQualityOf(item);
+        if (BACKSTAGE_PASSES.equals(item.name)) {
+            if (item.sellIn < 11) {
+                increaseQualityOf(item);
+            }
 
-            if (BACKSTAGE_PASSES.equals(item.name)) {
-                if (item.sellIn < 11) {
-                    if (item.quality < QUALITY_CEILING) {
-                        increaseQualityOf(item);
-                    }
-                }
-
-                if (item.sellIn < 6) {
-                    if (item.quality < QUALITY_CEILING) {
-                        increaseQualityOf(item);
-                    }
-                }
+            if (item.sellIn < 6) {
+                increaseQualityOf(item);
             }
         }
     }
 
     private void increaseQualityOf(Item item) {
-        item.quality++;
+        if (item.quality < QUALITY_CEILING)
+            item.quality++;
     }
 
     private boolean hasQuality(Item item) {
