@@ -15,13 +15,13 @@ public class GildedRoseTest {
 
     @Test
     public void All_items_have_a_quality_value_which_denotes_how_valuable_the_item_is() {
-        Item item = new Item("foo", 0, 3);
+        Item item = Create.item().name("Item Name").sellIn(0).quality(3).obj();
         assertEquals(3, item.quality);
     }
 
     @Test
     public void At_the_end_of_each_day_our_system_lowers_both_values_for_every_item() {
-        GildedRose gr = new GildedRose(new Item[]{new Item("First Item", 1, 2), new Item("Second Item", 15, 10)});
+        GildedRose gr = new GildedRose(new Item[]{Create.item().name("First Item").sellIn(1).quality(2).obj(), Create.item().name("Second Item").sellIn(15).quality(10).obj()});
 
         gr.processEndOfDayUpdates();
 
@@ -31,14 +31,14 @@ public class GildedRoseTest {
 
     @Test
     public void Once_the_sell_by_date_has_passed_quality_degrades_twice_as_fast() {
-        GildedRose gr = new GildedRose(new Item[]{new Item("Item Name", 0, 5)});
+        GildedRose gr = new GildedRose(new Item[]{Create.item().name("Item Name").sellIn(0).quality(5).obj()});
         gr.processEndOfDayUpdates();
         assertItem(gr.items[0], -1, 3);
     }
 
     @Test
     public void The_quality_of_an_item_is_never_negative() {
-        GildedRose gr = new GildedRose(new Item[]{new Item("Item Name", 1, 0)});
+        GildedRose gr = new GildedRose(new Item[]{Create.item().name("Item Name").sellIn(1).quality(0).obj()});
         gr.processEndOfDayUpdates();
         assertItem(gr.items[0], 0, 0);
     }
