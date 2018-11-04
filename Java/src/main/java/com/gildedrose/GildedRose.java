@@ -49,9 +49,11 @@ class GildedRose {
     }
 
     private void handleItemWithIncreasingQuality(Item item) {
-        increaseQualityOf(item);
+        if(AGED_BRIE.equals(item.name))
+            increaseQualityOf(item);
 
         if (BACKSTAGE_PASSES.equals(item.name)) {
+            increaseQualityOf(item);
             if (item.sellIn < 11) {
                 increaseQualityOf(item);
             }
