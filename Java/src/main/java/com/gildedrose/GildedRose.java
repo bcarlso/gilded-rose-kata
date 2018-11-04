@@ -19,7 +19,7 @@ class GildedRose {
             } else {
                 if (hasQuality(item)) {
                     if (!SULFURAS.equals(item.name)) {
-                        item.quality = item.quality - 1;
+                        decreaseQualityOf(item);
                     }
                 }
             }
@@ -33,7 +33,7 @@ class GildedRose {
                     if (!BACKSTAGE_PASSES.equals(item.name)) {
                         if (hasQuality(item)) {
                             if (!SULFURAS.equals(item.name)) {
-                                item.quality = item.quality - 1;
+                                decreaseQualityOf(item);
                             }
                         }
                     } else {
@@ -46,6 +46,10 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private void decreaseQualityOf(Item item) {
+        item.quality--;
     }
 
     private void handleItemWithIncreasingQuality(Item item) {
