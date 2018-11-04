@@ -53,10 +53,23 @@ public class GildedRoseTest {
 
     @Test
     public void Aged_Brie_actually_increases_in_quality_twice_as_fast_after_the_sell_in_is_passed() {
-        gr = runEndOfDayUsing(Create.item().name("Aged Brie").quality(5).obj());
+        gr = runEndOfDayUsing(Create.item().name("Aged Brie").isExpired().quality(5).obj());
         assertEquals(7, gr.items[0].quality);
     }
 
+    @Test
+    public void The_quality_of_an_item_is_never_more_than_50() {
+        gr = runEndOfDayUsing(Create.item().name("Aged Brie").quality(50).obj());
+        assertEquals(50, gr.items[0].quality);
+    }
+
+    @Test
+    public void Sulfuras_being_a_legendary_item_never_has_to_be_sold_or_decreases_in_quality() {
+        gr = runEndOfDayUsing(Create.item().name("Sulfuras, Hand of Ragnaros").sellIn(8).quality(10).obj());
+        assertItem(gr.items[0], 8, 10);
+    }
+
+    
     private GildedRose runEndOfDayUsing(Item...items) {
         gr = new GildedRose(items);
         gr.processEndOfDayUpdates();
