@@ -9,7 +9,7 @@ public class GildedRoseTest {
 
     @Test
     public void All_items_have_a_sell_in_value_which_denotes_the_number_of_days_we_have_to_sell_the_item() {
-        Item item = new Item("foo", 5, 0);
+        Item item = Create.item().name("Item Name").sellIn(5).quality(0).obj();
         assertEquals(5, item.sellIn);
     }
 
@@ -46,6 +46,36 @@ public class GildedRoseTest {
     private void assertItem(Item item, int expectedSellIn, int expectedQuality) {
         assertEquals(expectedSellIn, item.sellIn);
         assertEquals(expectedQuality, item.quality);
+    }
+
+    public static class Create {
+
+        private String itemName;
+        private int itemSellIn;
+        private int itemQuality;
+
+        public static Create item() {
+            return new Create();
+        }
+
+        public Create name(String itemName) {
+            this.itemName = itemName;
+            return this;
+        }
+
+        public Create sellIn(int itemSellIn) {
+            this.itemSellIn = itemSellIn;
+            return this;
+        }
+
+        public Create quality(int itemQuality) {
+            this.itemQuality = itemQuality;
+            return this;
+        }
+
+        public Item obj() {
+            return new Item(itemName, itemSellIn, itemQuality);
+        }
     }
 
     @Test
