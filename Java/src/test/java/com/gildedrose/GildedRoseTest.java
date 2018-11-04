@@ -7,23 +7,26 @@ import org.junit.Test;
 
 public class GildedRoseTest {
 
+    private GildedRose gr;
+
     @Test
     public void All_items_have_a_sell_in_value_which_denotes_the_number_of_days_we_have_to_sell_the_item() {
-        Item item = Create.item().name("Item Name").sellIn(5).quality(0).obj();
+        Item item = Create.item().sellIn(5).obj();
         assertEquals(5, item.sellIn);
     }
 
     @Test
     public void All_items_have_a_quality_value_which_denotes_how_valuable_the_item_is() {
-        Item item = Create.item().name("Item Name").sellIn(0).quality(3).obj();
+        Item item = Create.item().quality(3).obj();
         assertEquals(3, item.quality);
     }
 
     @Test
     public void At_the_end_of_each_day_our_system_lowers_both_values_for_every_item() {
-        GildedRose gr = new GildedRose(new Item[]{Create.item().name("First Item").sellIn(1).quality(2).obj(), Create.item().name("Second Item").sellIn(15).quality(10).obj()});
+        Item first = Create.item().sellIn(1).quality(2).obj();
+        Item second = Create.item().sellIn(15).quality(10).obj();
 
-        gr.processEndOfDayUpdates();
+        gr = runEndOfDayUsing(first, second);
 
         assertItem(gr.items[0], 0, 1);
         assertItem(gr.items[1], 14, 9);
@@ -31,16 +34,20 @@ public class GildedRoseTest {
 
     @Test
     public void Once_the_sell_by_date_has_passed_quality_degrades_twice_as_fast() {
-        GildedRose gr = new GildedRose(new Item[]{Create.item().name("Item Name").sellIn(0).quality(5).obj()});
-        gr.processEndOfDayUpdates();
+        gr = runEndOfDayUsing(Create.item().name("Item Name").sellIn(0).quality(5).obj());
         assertItem(gr.items[0], -1, 3);
     }
 
     @Test
     public void The_quality_of_an_item_is_never_negative() {
-        GildedRose gr = new GildedRose(new Item[]{Create.item().name("Item Name").sellIn(1).quality(0).obj()});
+        gr = runEndOfDayUsing(Create.item().name("Item Name").sellIn(1).quality(0).obj());
+        assertItem(this.gr.items[0], 0, 0);
+    }
+
+    private GildedRose runEndOfDayUsing(Item...items) {
+        gr = new GildedRose(items);
         gr.processEndOfDayUpdates();
-        assertItem(gr.items[0], 0, 0);
+        return gr;
     }
 
     private void assertItem(Item item, int expectedSellIn, int expectedQuality) {
@@ -50,9 +57,9 @@ public class GildedRoseTest {
 
     public static class Create {
 
-        private String itemName;
-        private int itemSellIn;
-        private int itemQuality;
+        private String itemName = "Item Name";
+        private int itemSellIn = 0;
+        private int itemQuality = 0;
 
         public static Create item() {
             return new Create();
