@@ -42,11 +42,10 @@ class GildedRose {
             item.quality++;
     }
 
-    private class AgedBrie {
-        private Item item;
+    private class AgedBrie extends BaseItem {
 
         public AgedBrie(Item item) {
-            this.item = item;
+            super(item);
         }
 
         public void invoke() {
@@ -57,9 +56,7 @@ class GildedRose {
         }
     }
 
-    private class BackstagePasses {
-        private Item item;
-
+    private class BackstagePasses extends BaseItem {
         public BackstagePasses(Item item) {
             this.item = item;
         }
@@ -83,13 +80,12 @@ class GildedRose {
         }
     }
 
-    private class StandardItem {
-        private Item item;
-
+    private class StandardItem extends BaseItem {
         public StandardItem(Item item) {
             this.item = item;
         }
 
+        @Override
         public void invoke() {
             if (hasQuality(item)) {
                 decreaseQualityOf(item);
