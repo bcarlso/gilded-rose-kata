@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-class StandardItem extends BaseItem {
+class StandardItem extends EndOfDayItemProcessor {
     public static final int QUALITY_FLOOR = 0;
 
     public StandardItem(Item item) {
@@ -8,7 +8,7 @@ class StandardItem extends BaseItem {
     }
 
     @Override
-    public void invoke() {
+    public void process() {
         if (hasQuality(item)) {
             decreaseQualityOf(item);
         }

@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-class AgedBrie extends BaseItem {
+class AgedBrie extends EndOfDayItemProcessor {
 
     public static final String AGED_BRIE = "Aged Brie";
 
@@ -8,7 +8,7 @@ class AgedBrie extends BaseItem {
         super(item);
     }
 
-    public void invoke() {
+    public void process() {
         increaseQuality();
         if (item.sellIn <= 0)
             increaseQuality();

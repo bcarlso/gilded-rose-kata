@@ -12,20 +12,21 @@ class GildedRose {
     public void processEndOfDayUpdates() {
         for (Item item : items) {
             if (SULFURAS.equals(item.name)) {
+                new Sulfras(item).process();
                 continue;
             }
 
             if (AgedBrie.AGED_BRIE.equals(item.name)) {
-                new AgedBrie(item).invoke();
+                new AgedBrie(item).process();
                 continue;
             }
 
             if (BackstagePasses.BACKSTAGE_PASSES.equals(item.name)) {
-                new BackstagePasses(item).invoke();
+                new BackstagePasses(item).process();
                 continue;
             }
 
-            new StandardItem(item).invoke();
+            new StandardItem(item).process();
         }
     }
 
