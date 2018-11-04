@@ -8,14 +8,14 @@ class BackstagePasses extends EndOfDayItemProcessor {
     }
 
     public void process() {
-        increaseQuality();
+        increaseQualityBy(1);
 
         if (item.sellIn < 11) {
-            increaseQuality();
+            increaseQualityBy(1);
         }
 
         if (item.sellIn < 6) {
-            increaseQuality();
+            increaseQualityBy(1);
         }
 
         decreaseSellIn();

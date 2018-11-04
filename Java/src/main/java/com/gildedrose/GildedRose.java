@@ -1,7 +1,6 @@
 package com.gildedrose;
 
 class GildedRose {
-    public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
     Item[] items;
 
@@ -11,7 +10,7 @@ class GildedRose {
 
     public void processEndOfDayUpdates() {
         for (Item item : items) {
-            if (SULFURAS.equals(item.name)) {
+            if (Sulfras.SULFURAS.equals(item.name)) {
                 new Sulfras(item).process();
                 continue;
             }

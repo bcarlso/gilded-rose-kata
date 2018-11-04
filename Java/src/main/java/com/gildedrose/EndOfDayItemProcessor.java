@@ -14,8 +14,8 @@ public abstract class EndOfDayItemProcessor {
         this.item.sellIn--;
     }
 
-    protected void increaseQuality() {
+    protected void increaseQualityBy(int value) {
         if (this.item.quality < QUALITY_CEILING)
-            this.item.quality++;
+            this.item.quality = this.item.quality + value;
     }
 }
