@@ -2,6 +2,7 @@ package com.gildedrose;
 
 import static org.junit.Assert.*;
 
+import com.gildedrose.builder.Create;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -53,36 +54,6 @@ public class GildedRoseTest {
     private void assertItem(Item item, int expectedSellIn, int expectedQuality) {
         assertEquals(expectedSellIn, item.sellIn);
         assertEquals(expectedQuality, item.quality);
-    }
-
-    public static class Create {
-
-        private String itemName = "Item Name";
-        private int itemSellIn = 0;
-        private int itemQuality = 0;
-
-        public static Create item() {
-            return new Create();
-        }
-
-        public Create name(String itemName) {
-            this.itemName = itemName;
-            return this;
-        }
-
-        public Create sellIn(int itemSellIn) {
-            this.itemSellIn = itemSellIn;
-            return this;
-        }
-
-        public Create quality(int itemQuality) {
-            this.itemQuality = itemQuality;
-            return this;
-        }
-
-        public Item obj() {
-            return new Item(itemName, itemSellIn, itemQuality);
-        }
     }
 
     @Test
