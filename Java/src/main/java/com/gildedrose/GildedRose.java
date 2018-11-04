@@ -6,6 +6,7 @@ class GildedRose {
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     public static final int QUALITY_FLOOR = 0;
     public static final int QUALITY_CEILING = 50;
+
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -19,32 +20,77 @@ class GildedRose {
             }
 
             if (AGED_BRIE.equals(item.name)) {
-                increaseQualityOf(item);
-                if (item.sellIn <= 0)
-                    increaseQualityOf(item);
-                decreaseSellInFor(item);
+                new AgedBrie(item).invoke();
                 continue;
             }
 
             if (BACKSTAGE_PASSES.equals(item.name)) {
-                increaseQualityOf(item);
-
-                if (item.sellIn < 11) {
-                    increaseQualityOf(item);
-                }
-
-                if (item.sellIn < 6) {
-                    increaseQualityOf(item);
-                }
-
-                decreaseSellInFor(item);
-
-                if (item.sellIn < 0) {
-                    item.quality = 0;
-                }
+                new BackstagePasses(item).invoke();
                 continue;
             }
 
+            new StandardItem(item).invoke();
+        }
+    }
+
+    private void decreaseSellInFor(Item item) {
+        item.sellIn--;
+    }
+
+    private void increaseQualityOf(Item item) {
+        if (item.quality < QUALITY_CEILING)
+            item.quality++;
+    }
+
+    private class AgedBrie {
+        private Item item;
+
+        public AgedBrie(Item item) {
+            this.item = item;
+        }
+
+        public void invoke() {
+            increaseQualityOf(item);
+            if (item.sellIn <= 0)
+                increaseQualityOf(item);
+            decreaseSellInFor(item);
+        }
+    }
+
+    private class BackstagePasses {
+        private Item item;
+
+        public BackstagePasses(Item item) {
+            this.item = item;
+        }
+
+        public void invoke() {
+            increaseQualityOf(item);
+
+            if (item.sellIn < 11) {
+                increaseQualityOf(item);
+            }
+
+            if (item.sellIn < 6) {
+                increaseQualityOf(item);
+            }
+
+            decreaseSellInFor(item);
+
+            if (item.sellIn < 0) {
+                item.quality = 0;
+            }
+        }
+    }
+
+    private class StandardItem {
+        private Item item;
+
+        public StandardItem(Item item) {
+            this.item = item;
+        }
+
+        public void invoke() {
             if (hasQuality(item)) {
                 decreaseQualityOf(item);
             }
@@ -56,25 +102,14 @@ class GildedRose {
                     decreaseQualityOf(item);
                 }
             }
-
-
         }
-    }
 
-    private void decreaseSellInFor(Item item) {
-        item.sellIn--;
-    }
+        private boolean hasQuality(Item item) {
+            return item.quality > QUALITY_FLOOR;
+        }
 
-    private void decreaseQualityOf(Item item) {
-        item.quality--;
-    }
-
-    private void increaseQualityOf(Item item) {
-        if (item.quality < QUALITY_CEILING)
-            item.quality++;
-    }
-
-    private boolean hasQuality(Item item) {
-        return item.quality > QUALITY_FLOOR;
+        private void decreaseQualityOf(Item item) {
+            item.quality--;
+        }
     }
 }
