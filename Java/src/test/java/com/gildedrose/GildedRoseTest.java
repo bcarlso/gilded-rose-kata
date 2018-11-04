@@ -69,7 +69,36 @@ public class GildedRoseTest {
         assertItem(gr.items[0], 8, 10);
     }
 
-    
+    @Test
+    public void Backstage_passes_increases_in_quality_as_its_sell_in_value_approaches() {
+        gr = runEndOfDayUsing(Create.item().name("Backstage passes to a TAFKAL80ETC concert").sellIn(100).quality(10).obj());
+        assertEquals(11, gr.items[0].quality);
+    }
+
+    @Test
+    public void Backstage_passes_increases_in_quality_as_its_sell_in_value_approaches_but_cannot_exceed_50() {
+        gr = runEndOfDayUsing(Create.item().name("Backstage passes to a TAFKAL80ETC concert").sellIn(100).quality(50).obj());
+        assertEquals(50, gr.items[0].quality);
+    }
+
+    @Test
+    public void Backstage_passes_increases_in_quality_twice_as_fast_when_within_10_days() {
+        gr = runEndOfDayUsing(Create.item().name("Backstage passes to a TAFKAL80ETC concert").sellIn(10).quality(10).obj());
+        assertEquals(12, gr.items[0].quality);
+    }
+
+    @Test
+    public void Backstage_passes_increases_in_quality_three_times_as_fast_when_within_5_days() {
+        gr = runEndOfDayUsing(Create.item().name("Backstage passes to a TAFKAL80ETC concert").sellIn(5).quality(10).obj());
+        assertEquals(13, gr.items[0].quality);
+    }
+
+    @Test
+    public void Backstage_passes_quality_goes_to_zero_after_the_show() {
+        gr = runEndOfDayUsing(Create.item().name("Backstage passes to a TAFKAL80ETC concert").sellIn(0).obj());
+        assertEquals(0, gr.items[0].quality);
+    }
+
     private GildedRose runEndOfDayUsing(Item...items) {
         gr = new GildedRose(items);
         gr.processEndOfDayUpdates();
