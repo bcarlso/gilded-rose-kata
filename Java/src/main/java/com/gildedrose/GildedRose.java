@@ -22,9 +22,7 @@ class GildedRose {
                 handleItemWithIncreasingQuality(item);
             } else {
                 if (hasQuality(item)) {
-                    if (!SULFURAS.equals(item.name)) {
                         decreaseQualityOf(item);
-                    }
                 }
             }
 
