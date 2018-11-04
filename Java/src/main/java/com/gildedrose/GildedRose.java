@@ -5,7 +5,6 @@ class GildedRose {
     public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     public static final int QUALITY_FLOOR = 0;
-    public static final int QUALITY_CEILING = 50;
 
     Item[] items;
 
@@ -33,15 +32,6 @@ class GildedRose {
         }
     }
 
-    private void decreaseSellInFor(Item item) {
-        item.sellIn--;
-    }
-
-    private void increaseQualityOf(Item item) {
-        if (item.quality < QUALITY_CEILING)
-            item.quality++;
-    }
-
     private class AgedBrie extends BaseItem {
 
         public AgedBrie(Item item) {
@@ -58,7 +48,7 @@ class GildedRose {
 
     private class BackstagePasses extends BaseItem {
         public BackstagePasses(Item item) {
-            this.item = item;
+            super(item);
         }
 
         public void invoke() {
@@ -82,7 +72,7 @@ class GildedRose {
 
     private class StandardItem extends BaseItem {
         public StandardItem(Item item) {
-            this.item = item;
+            super(item);
         }
 
         @Override
