@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import static com.gildedrose.GildedRose.*;
 import static org.junit.Assert.*;
 
 import com.gildedrose.builder.Create;
@@ -7,8 +8,6 @@ import org.junit.Test;
 
 public class GildedRoseTest {
 
-    public static final String AGED_BRIE = "Aged Brie";
-    public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private GildedRose gr;
 
     @Test
@@ -69,7 +68,7 @@ public class GildedRoseTest {
 
     @Test
     public void Sulfuras_being_a_legendary_item_never_has_to_be_sold_or_decreases_in_quality() {
-        gr = runEndOfDayUsing(Create.item().name("Sulfuras, Hand of Ragnaros").sellIn(8).quality(10).obj());
+        gr = runEndOfDayUsing(Create.item().name(SULFURAS).sellIn(8).quality(10).obj());
 
         assertEquals(8, gr.items[0].sellIn);
         assertEquals(10, gr.items[0].quality);
