@@ -15,23 +15,7 @@ class GildedRose {
     public void processEndOfDayUpdates() {
         for (int i = 0; i < items.length; i++) {
             if (AGED_BRIE.equals(items[i].name) || BACKSTAGE_PASSES.equals(items[i].name)) {
-                if (items[i].quality < QUALITY_CEILING) {
-                    items[i].quality = items[i].quality + 1;
-
-                    if (BACKSTAGE_PASSES.equals(items[i].name)) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < QUALITY_CEILING) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < QUALITY_CEILING) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-                    }
-                }
+                handleItemWithIncreasingQuality(items[i]);
             } else {
                 if (hasQuality(items[i])) {
                     if (!SULFURAS.equals(items[i].name)) {
@@ -58,6 +42,26 @@ class GildedRose {
                 } else {
                     if (items[i].quality < QUALITY_CEILING) {
                         items[i].quality = items[i].quality + 1;
+                    }
+                }
+            }
+        }
+    }
+
+    private void handleItemWithIncreasingQuality(Item item) {
+        if (item.quality < QUALITY_CEILING) {
+            item.quality = item.quality + 1;
+
+            if (BACKSTAGE_PASSES.equals(item.name)) {
+                if (item.sellIn < 11) {
+                    if (item.quality < QUALITY_CEILING) {
+                        item.quality = item.quality + 1;
+                    }
+                }
+
+                if (item.sellIn < 6) {
+                    if (item.quality < QUALITY_CEILING) {
+                        item.quality = item.quality + 1;
                     }
                 }
             }
