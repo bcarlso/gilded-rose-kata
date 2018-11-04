@@ -29,6 +29,20 @@ public class GildedRoseTest {
         assertItem(gr.items[1], 14, 9);
     }
 
+    @Test
+    public void Once_the_sell_by_date_has_passed_quality_degrades_twice_as_fast() {
+        GildedRose gr = new GildedRose(new Item[]{new Item("Item Name", 0, 5)});
+        gr.processEndOfDayUpdates();
+        assertItem(gr.items[0], -1, 3);
+    }
+
+    @Test
+    public void The_quality_of_an_item_is_never_negative() {
+        GildedRose gr = new GildedRose(new Item[]{new Item("Item Name", 1, 0)});
+        gr.processEndOfDayUpdates();
+        assertItem(gr.items[0], 0, 0);
+    }
+
     private void assertItem(Item item, int expectedSellIn, int expectedQuality) {
         assertEquals(expectedSellIn, item.sellIn);
         assertEquals(expectedQuality, item.quality);
