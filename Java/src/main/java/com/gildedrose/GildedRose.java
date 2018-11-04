@@ -40,9 +40,7 @@ class GildedRose {
                         item.quality = item.quality - item.quality;
                     }
                 } else {
-                    if (item.quality < QUALITY_CEILING) {
-                        increaseQualityOf(item);
-                    }
+                    increaseQualityOf(item);
                 }
             }
         }
@@ -53,7 +51,7 @@ class GildedRose {
     }
 
     private void handleItemWithIncreasingQuality(Item item) {
-        if(AGED_BRIE.equals(item.name))
+        if (AGED_BRIE.equals(item.name))
             increaseQualityOf(item);
 
         if (BACKSTAGE_PASSES.equals(item.name)) {
