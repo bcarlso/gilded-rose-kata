@@ -14,6 +14,10 @@ class GildedRose {
 
     public void processEndOfDayUpdates() {
         for (Item item : items) {
+            if (SULFURAS.equals(item.name)) {
+                continue;
+            }
+
             if (qualityIncreasesWithAgeFor(item)) {
                 handleItemWithIncreasingQuality(item);
             } else {
@@ -36,9 +40,7 @@ class GildedRose {
                         item.quality = 0;
                     } else {
                         if (hasQuality(item)) {
-                            if (!SULFURAS.equals(item.name)) {
-                                decreaseQualityOf(item);
-                            }
+                            decreaseQualityOf(item);
                         }
                     }
                 }
