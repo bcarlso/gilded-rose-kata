@@ -41,7 +41,7 @@ class GildedRose {
                     }
                 } else {
                     if (items[i].quality < QUALITY_CEILING) {
-                        items[i].quality = items[i].quality + 1;
+                        increaseQualityOf(items[i]);
                     }
                 }
             }
@@ -50,22 +50,27 @@ class GildedRose {
 
     private void handleItemWithIncreasingQuality(Item item) {
         if (item.quality < QUALITY_CEILING) {
-            item.quality = item.quality + 1;
+
+            increaseQualityOf(item);
 
             if (BACKSTAGE_PASSES.equals(item.name)) {
                 if (item.sellIn < 11) {
                     if (item.quality < QUALITY_CEILING) {
-                        item.quality = item.quality + 1;
+                        increaseQualityOf(item);
                     }
                 }
 
                 if (item.sellIn < 6) {
                     if (item.quality < QUALITY_CEILING) {
-                        item.quality = item.quality + 1;
+                        increaseQualityOf(item);
                     }
                 }
             }
         }
+    }
+
+    private void increaseQualityOf(Item item) {
+        item.quality++;
     }
 
     private boolean hasQuality(Item item) {
