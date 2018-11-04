@@ -14,7 +14,7 @@ class GildedRose {
 
     public void processEndOfDayUpdates() {
         for (Item item : items) {
-            if (AGED_BRIE.equals(item.name) || BACKSTAGE_PASSES.equals(item.name)) {
+            if (qualityIncreasesWithAgeFor(item)) {
                 handleItemWithIncreasingQuality(item);
             } else {
                 if (hasQuality(item)) {
@@ -33,7 +33,7 @@ class GildedRose {
                     increaseQualityOf(item);
                 } else {
                     if (BACKSTAGE_PASSES.equals(item.name)) {
-                        item.quality = item.quality - item.quality;
+                        item.quality = 0;
                     } else {
                         if (hasQuality(item)) {
                             if (!SULFURAS.equals(item.name)) {
@@ -44,6 +44,10 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private boolean qualityIncreasesWithAgeFor(Item item) {
+        return AGED_BRIE.equals(item.name) || BACKSTAGE_PASSES.equals(item.name);
     }
 
     private void decreaseQualityOf(Item item) {
