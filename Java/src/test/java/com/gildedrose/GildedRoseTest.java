@@ -22,15 +22,16 @@ public class GildedRoseTest {
     @Test
     public void At_the_end_of_each_day_our_system_lowers_both_values_for_every_item() {
         GildedRose gr = new GildedRose(new Item[]{new Item("First Item", 1, 2), new Item("Second Item", 15, 10)});
-        gr.updateQuality();
 
-        Item firstItem = gr.items[0];
-        assertEquals(0, firstItem.sellIn);
-        assertEquals(1, firstItem.quality);
+        gr.processEndOfDayUpdates();
 
-        Item secondItem = gr.items[1];
-        assertEquals(14, secondItem.sellIn);
-        assertEquals(9, secondItem.quality);
+        assertItem(gr.items[0], 0, 1);
+        assertItem(gr.items[1], 14, 9);
+    }
+
+    private void assertItem(Item item, int expectedSellIn, int expectedQuality) {
+        assertEquals(expectedSellIn, item.sellIn);
+        assertEquals(expectedQuality, item.quality);
     }
 
     @Test
@@ -38,7 +39,7 @@ public class GildedRoseTest {
     public void foo() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.processEndOfDayUpdates();
         assertEquals("fixme", app.items[0].name);
     }
 
