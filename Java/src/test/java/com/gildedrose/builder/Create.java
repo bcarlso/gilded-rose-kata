@@ -34,6 +34,12 @@ public class Create {
         return item;
     }
 
+    public static Create conjured() {
+        Create item = item();
+        item.name("Conjured");
+        return item;
+    }
+
     public Create name(String itemName) {
         this.itemName = itemName;
         return this;
@@ -58,6 +64,9 @@ public class Create {
 
         if(BackstagePasses.BACKSTAGE_PASSES.equals(itemName))
             return new BackstagePasses(itemName, itemSellIn, itemQuality);
+
+        if("Conjured".equals(itemName))
+            return new Conjured(itemName, itemSellIn, itemQuality);
 
         return new StandardItem(itemName, itemSellIn, itemQuality);
     }
