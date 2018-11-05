@@ -4,7 +4,7 @@ class GildedRose {
 
     private final CatalogItem[] items;
 
-    public GildedRose(CatalogItem[] items) {
+    public GildedRose(CatalogItem...items) {
         this.items = items;
     }
 
