@@ -5,11 +5,7 @@ public class StandardItem extends CatalogItem {
     public static final int STANDARD_DEPRECIATION = 1;
 
     public StandardItem(String name, int sellIn, int quality) {
-        this(new Item(name, sellIn, quality));
-    }
-
-    public StandardItem(Item item) {
-        super(item);
+        super(name, sellIn, quality);
     }
 
     @Override

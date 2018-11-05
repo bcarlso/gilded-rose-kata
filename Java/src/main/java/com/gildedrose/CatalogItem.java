@@ -5,11 +5,8 @@ public abstract class CatalogItem {
     public static final int APPRECIATION_RATE = 1;
     protected Item item;
 
-    public CatalogItem(Item item) {
-        this.item = item;
-    }
-    public Item getItem() {
-        return this.item;
+    public CatalogItem(String name, int sellIn, int quality) {
+        this.item = new Item(name, sellIn, quality);
     }
 
     public abstract void process();
