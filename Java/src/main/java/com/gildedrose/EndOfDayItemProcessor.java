@@ -8,6 +8,9 @@ public abstract class EndOfDayItemProcessor {
     public EndOfDayItemProcessor(Item item) {
         this.item = item;
     }
+    public Item getItem() {
+        return this.item;
+    }
 
     public abstract void process();
 
@@ -22,5 +25,13 @@ public abstract class EndOfDayItemProcessor {
 
     protected boolean sellInHasPassed() {
         return item.sellIn < 0;
+    }
+
+    public int sellIn() {
+        return item.sellIn;
+    }
+
+    public int quality() {
+        return item.quality;
     }
 }
