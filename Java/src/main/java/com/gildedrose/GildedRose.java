@@ -29,4 +29,15 @@ class GildedRose {
         }
     }
 
+    public Item item(int i) {
+        return items[i];
+    }
+
+    int getSellInForItem(int i) {
+        return item(i).sellIn;
+    }
+
+    int getQualityForItem(int i) {
+        return item(i).quality;
+    }
 }
