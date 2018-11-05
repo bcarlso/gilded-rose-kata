@@ -11,20 +11,20 @@ public class GildedRoseTest {
 
     @Test
     public void All_items_have_a_sell_in_value_which_denotes_the_number_of_days_we_have_to_sell_the_item() {
-        Item item = Create.item().sellIn(5).obj();
+        Item item = Create.standardItem().sellIn(5).obj();
         assertEquals(5, item.sellIn);
     }
 
     @Test
     public void All_items_have_a_quality_value_which_denotes_how_valuable_the_item_is() {
-        Item item = Create.item().quality(3).obj();
+        Item item = Create.standardItem().quality(3).obj();
         assertEquals(3, item.quality);
     }
 
     @Test
     public void At_the_end_of_each_day_our_system_lowers_both_values_for_every_item() {
-        Item first = Create.item().sellIn(1).quality(2).obj();
-        Item second = Create.item().sellIn(15).quality(10).obj();
+        Item first = Create.standardItem().sellIn(1).quality(2).obj();
+        Item second = Create.standardItem().sellIn(15).quality(10).obj();
 
         gr = runEndOfDayUsing(first, second);
 
@@ -37,13 +37,13 @@ public class GildedRoseTest {
 
     @Test
     public void Once_the_sell_by_date_has_passed_quality_degrades_twice_as_fast() {
-        gr = runEndOfDayUsing(Create.item().isExpired().quality(5).obj());
+        gr = runEndOfDayUsing(Create.standardItem().isExpired().quality(5).obj());
         assertEquals(3, gr.getQualityForItem(0));
     }
 
     @Test
     public void The_quality_of_an_item_is_never_negative() {
-        gr = runEndOfDayUsing(Create.item().sellIn(1).quality(0).obj());
+        gr = runEndOfDayUsing(Create.standardItem().sellIn(1).quality(0).obj());
         assertEquals(0, gr.getQualityForItem(0));
     }
 

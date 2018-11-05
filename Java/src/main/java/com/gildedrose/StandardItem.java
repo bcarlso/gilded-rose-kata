@@ -1,8 +1,12 @@
 package com.gildedrose;
 
-class StandardItem extends EndOfDayItemProcessor {
+public class StandardItem extends EndOfDayItemProcessor {
     public static final int WORTHLESS = 0;
     public static final int STANDARD_DEPRECIATION = 1;
+
+    public StandardItem(String name, int sellIn, int quality) {
+        this(new Item(name, sellIn, quality));
+    }
 
     public StandardItem(Item item) {
         super(item);
