@@ -1,7 +1,8 @@
 package com.gildedrose;
 
 class StandardItem extends EndOfDayItemProcessor {
-    public static final int QUALITY_FLOOR = 0;
+    public static final int WORTHLESS = 0;
+    public static final int STANDARD_DEPRECIATION = 1;
 
     public StandardItem(Item item) {
         super(item);
@@ -9,24 +10,16 @@ class StandardItem extends EndOfDayItemProcessor {
 
     @Override
     public void process() {
-        if (hasQuality(item)) {
-            decreaseQualityOf(item);
-        }
-
         decreaseSellIn();
 
-        if (item.sellIn < 0) {
-            if (hasQuality(item)) {
-                decreaseQualityOf(item);
-            }
-        }
+        if (sellInHasPassed()) {
+            decreaseQualityOf(STANDARD_DEPRECIATION * 2);
+        } else
+            decreaseQualityOf(STANDARD_DEPRECIATION);
     }
 
-    private boolean hasQuality(Item item) {
-        return item.quality > QUALITY_FLOOR;
-    }
-
-    private void decreaseQualityOf(Item item) {
-        item.quality--;
+    private void decreaseQualityOf(int amount) {
+        if (item.quality > WORTHLESS)
+            item.quality -= amount;
     }
 }

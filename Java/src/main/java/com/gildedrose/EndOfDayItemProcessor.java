@@ -19,4 +19,8 @@ public abstract class EndOfDayItemProcessor {
         if (this.item.quality < QUALITY_CEILING)
             this.item.quality = this.item.quality + value;
     }
+
+    protected boolean sellInHasPassed() {
+        return item.sellIn < 0;
+    }
 }

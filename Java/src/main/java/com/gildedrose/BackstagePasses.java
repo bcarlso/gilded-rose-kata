@@ -24,10 +24,6 @@ class BackstagePasses extends EndOfDayItemProcessor {
         }
     }
 
-    private boolean sellInHasPassed() {
-        return item.sellIn < 0;
-    }
-
     private boolean concertWithin(int days) {
         return item.sellIn <= days;
     }
