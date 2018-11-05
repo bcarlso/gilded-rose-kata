@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class BackstagePasses extends EndOfDayItemProcessor {
+public class BackstagePasses extends CatalogItem {
     public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     public static final int WORTHLESS = 0;
 

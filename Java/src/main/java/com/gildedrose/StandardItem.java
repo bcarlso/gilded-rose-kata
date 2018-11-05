@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class StandardItem extends EndOfDayItemProcessor {
+public class StandardItem extends CatalogItem {
     public static final int WORTHLESS = 0;
     public static final int STANDARD_DEPRECIATION = 1;
 

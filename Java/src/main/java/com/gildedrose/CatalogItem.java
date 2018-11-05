@@ -1,11 +1,11 @@
 package com.gildedrose;
 
-public abstract class EndOfDayItemProcessor {
+public abstract class CatalogItem {
     public static final int QUALITY_CEILING = 50;
     public static final int APPRECIATION_RATE = 1;
     protected Item item;
 
-    public EndOfDayItemProcessor(Item item) {
+    public CatalogItem(Item item) {
         this.item = item;
     }
     public Item getItem() {

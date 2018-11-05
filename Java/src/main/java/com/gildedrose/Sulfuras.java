@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class Sulfuras extends EndOfDayItemProcessor {
+public class Sulfuras extends CatalogItem {
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
     public Sulfuras(Item item) {

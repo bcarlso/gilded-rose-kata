@@ -49,7 +49,7 @@ public class Create {
         return this;
     }
 
-    public EndOfDayItemProcessor obj() {
+    public CatalogItem obj() {
         if(AgedBrie.AGED_BRIE.equals(itemName))
             return new AgedBrie(itemName, itemSellIn, itemQuality);
 

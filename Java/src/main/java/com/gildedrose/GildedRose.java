@@ -2,27 +2,20 @@ package com.gildedrose;
 
 class GildedRose {
 
-    private final EndOfDayItemProcessor[] itemProcessors;
+    private final CatalogItem[] items;
 
-    public GildedRose(EndOfDayItemProcessor[] items) {
-        itemProcessors = items;
+    public GildedRose(CatalogItem[] items) {
+        this.items = items;
     }
 
     public void processEndOfDayUpdates() {
-        for (EndOfDayItemProcessor ip : itemProcessors) {
+        for (CatalogItem ip : items) {
             ip.process();
         }
     }
 
-    public EndOfDayItemProcessor item(int i) {
-        return itemProcessors[i];
+    public CatalogItem item(int i) {
+        return items[i];
     }
 
-    int getSellInForItem(int i) {
-        return item(i).sellIn();
-    }
-
-    int getQualityForItem(int i) {
-        return item(i).quality();
-    }
 }
