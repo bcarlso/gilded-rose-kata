@@ -1,8 +1,5 @@
 package com.gildedrose;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class GildedRose {
 
     Item[] items;
@@ -12,8 +9,8 @@ class GildedRose {
         this.items = items;
         itemProcessors = new EndOfDayItemProcessor[items.length];
         for (int i = 0; i < items.length; i++) {
-            if (Sulfras.SULFURAS.equals(items[i].name))
-                itemProcessors[i] = (new Sulfras(items[i]));
+            if (Sulfuras.SULFURAS.equals(items[i].name))
+                itemProcessors[i] = (new Sulfuras(items[i]));
             else if (AgedBrie.AGED_BRIE.equals(items[i].name))
                 itemProcessors[i] = (new AgedBrie(items[i]));
             else if (BackstagePasses.BACKSTAGE_PASSES.equals(items[i].name))

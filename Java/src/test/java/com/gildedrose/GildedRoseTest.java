@@ -73,9 +73,8 @@ public class GildedRoseTest {
 
     @Test
     public void Sulfuras_being_a_legendary_item_never_has_to_be_sold_or_decreases_in_quality() {
-        gr = new GildedRose(new Item[]{Create.item().name(Sulfras.SULFURAS).sellIn(8).quality(10).obj()});
+        gr = new GildedRose(new EndOfDayItemProcessor[]{Create.sulfuras().name(Sulfuras.SULFURAS).sellIn(8).quality(10).o()});
         gr.processEndOfDayUpdates();
-        gr = gr;
 
         assertEquals(8, gr.getSellInForItem(0));
         assertEquals(10, gr.getQualityForItem(0));
