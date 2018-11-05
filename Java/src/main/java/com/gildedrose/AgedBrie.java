@@ -1,11 +1,15 @@
 package com.gildedrose;
 
-class AgedBrie extends EndOfDayItemProcessor {
+public class AgedBrie extends EndOfDayItemProcessor {
 
     public static final String AGED_BRIE = "Aged Brie";
 
     public AgedBrie(Item item) {
         super(item);
+    }
+
+    public AgedBrie(String itemName, int itemSellIn, int itemQuality) {
+        this(new Item(itemName, itemSellIn, itemQuality));
     }
 
     public void process() {

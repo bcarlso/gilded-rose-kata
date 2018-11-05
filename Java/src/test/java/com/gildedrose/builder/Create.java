@@ -1,5 +1,6 @@
 package com.gildedrose.builder;
 
+import com.gildedrose.AgedBrie;
 import com.gildedrose.EndOfDayItemProcessor;
 import com.gildedrose.Item;
 import com.gildedrose.StandardItem;
@@ -19,6 +20,11 @@ public class Create {
         return item();
     }
 
+    public static Create agedBrie() {
+        Create item = item();
+        item.name(AgedBrie.AGED_BRIE);
+        return item;
+    }
 
     public Create name(String itemName) {
         this.itemName = itemName;
@@ -40,6 +46,8 @@ public class Create {
     }
 
     public EndOfDayItemProcessor o() {
+        if(AgedBrie.AGED_BRIE.equals(itemName))
+            return new AgedBrie(itemName, itemSellIn, itemQuality);
         return new StandardItem(itemName, itemSellIn, itemQuality);
     }
 

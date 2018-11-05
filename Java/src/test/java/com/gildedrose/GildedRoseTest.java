@@ -52,25 +52,22 @@ public class GildedRoseTest {
 
     @Test
     public void Aged_Brie_actually_increases_in_quality_the_older_it_gets() {
-        gr = new GildedRose(new Item[]{Create.item().name(AgedBrie.AGED_BRIE).sellIn(1).quality(5).obj()});
+        gr = new GildedRose(new EndOfDayItemProcessor[]{Create.agedBrie().sellIn(1).quality(5).o()});
         gr.processEndOfDayUpdates();
-        gr = gr;
         assertEquals(6, gr.getQualityForItem(0));
     }
 
     @Test
     public void Aged_Brie_actually_increases_in_quality_twice_as_fast_after_the_sell_in_is_passed() {
-        gr = new GildedRose(new Item[]{Create.item().name(AgedBrie.AGED_BRIE).isExpired().quality(5).obj()});
+        gr = new GildedRose(new EndOfDayItemProcessor[]{Create.agedBrie().isExpired().quality(5).o()});
         gr.processEndOfDayUpdates();
-        gr = gr;
         assertEquals(7, gr.getQualityForItem(0));
     }
 
     @Test
     public void The_quality_of_Aged_Brie_is_never_more_than_50() {
-        gr = new GildedRose(new Item[]{Create.item().name(AgedBrie.AGED_BRIE).quality(50).obj()});
+        gr = new GildedRose(new EndOfDayItemProcessor[]{Create.agedBrie().quality(50).o()});
         gr.processEndOfDayUpdates();
-        gr = gr;
         assertEquals(50, gr.getQualityForItem(0));
     }
 
