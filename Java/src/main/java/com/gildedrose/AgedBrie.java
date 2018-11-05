@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class AgedBrie extends CatalogItem {
+public class AgedBrie extends AppreciatingCatalogItem {
 
     public static final String AGED_BRIE = "Aged Brie";
 
