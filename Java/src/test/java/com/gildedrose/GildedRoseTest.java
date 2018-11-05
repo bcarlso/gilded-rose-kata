@@ -33,7 +33,7 @@ public class GildedRoseTest {
         }
 
         @Override
-        public void process() {
+        public void processEoD() {
             this.endOfDayProcessingWasCalled = true;
         }
 

@@ -6,7 +6,7 @@ public class StandardItem extends DepreciatingCatalogItem {
     }
 
     @Override
-    public void process() {
+    public void processEoD() {
         decreaseSellIn();
 
         if (sellInHasPassed()) {

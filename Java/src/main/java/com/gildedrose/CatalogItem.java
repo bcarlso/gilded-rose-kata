@@ -2,7 +2,7 @@ package com.gildedrose;
 
 public abstract class CatalogItem {
     protected Item item;
-    public abstract void process();
+    public abstract void processEoD();
     public CatalogItem(String name, int sellIn, int quality) {
         this.item = new Item(name, sellIn, quality);
     }

@@ -10,7 +10,7 @@ class GildedRose {
 
     public void processEndOfDayUpdates() {
         for (CatalogItem ip : items) {
-            ip.process();
+            ip.processEoD();
         }
     }
 

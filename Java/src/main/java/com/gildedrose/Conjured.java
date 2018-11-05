@@ -7,9 +7,9 @@ public class Conjured extends DepreciatingCatalogItem {
     }
 
     @Override
-    public void process() {
+    public void processEoD() {
         decreaseSellIn();
-        
+
         if (sellInHasPassed())
             decreaseQualityBy(STANDARD_DEPRECIATION * 4);
         else

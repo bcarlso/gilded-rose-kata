@@ -8,7 +8,7 @@ public class BackstagePasses extends AppreciatingCatalogItem {
         super(name, sellIn, quality);
     }
 
-    public void process() {
+    public void processEoD() {
 
         if (concertWithin(5))
             increaseQualityBy(APPRECIATION_RATE * 3);

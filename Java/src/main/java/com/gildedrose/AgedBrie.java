@@ -8,7 +8,7 @@ public class AgedBrie extends AppreciatingCatalogItem {
         super(itemName, itemSellIn, itemQuality);
     }
 
-    public void process() {
+    public void processEoD() {
         int appreciation = item.sellIn > 0 ? APPRECIATION_RATE : APPRECIATION_RATE * 2;
         increaseQualityBy(appreciation);
         decreaseSellIn();

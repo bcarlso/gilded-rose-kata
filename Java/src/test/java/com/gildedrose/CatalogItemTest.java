@@ -24,7 +24,7 @@ public class CatalogItemTest {
         }
 
         @Override
-        public void process() {
+        public void processEoD() {
             ;
         }
     }
