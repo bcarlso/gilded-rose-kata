@@ -29,6 +29,12 @@ public class Create {
         return item;
     }
 
+    public static Create backstagePasses() {
+        Create item = item();
+        item.name(BackstagePasses.BACKSTAGE_PASSES);
+        return item;
+    }
+
     public Create name(String itemName) {
         this.itemName = itemName;
         return this;
@@ -54,6 +60,9 @@ public class Create {
 
         if(Sulfuras.SULFURAS.equals(itemName))
             return new Sulfuras(itemName, itemSellIn, itemQuality);
+
+        if(BackstagePasses.BACKSTAGE_PASSES.equals(itemName))
+            return new BackstagePasses(itemName, itemSellIn, itemQuality);
 
         return new StandardItem(itemName, itemSellIn, itemQuality);
     }

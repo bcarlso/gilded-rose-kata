@@ -68,6 +68,7 @@ public class GildedRoseTest {
     public void The_quality_of_Aged_Brie_is_never_more_than_50() {
         gr = new GildedRose(new EndOfDayItemProcessor[]{Create.agedBrie().quality(50).o()});
         gr.processEndOfDayUpdates();
+
         assertEquals(50, gr.getQualityForItem(0));
     }
 
@@ -82,41 +83,41 @@ public class GildedRoseTest {
 
     @Test
     public void Backstage_passes_increases_in_quality_as_its_sell_in_value_approaches() {
-        gr = new GildedRose(new Item[]{Create.item().name(BackstagePasses.BACKSTAGE_PASSES).sellIn(100).quality(10).obj()});
+        gr = new GildedRose(new EndOfDayItemProcessor[]{Create.backstagePasses().sellIn(100).quality(10).o()});
         gr.processEndOfDayUpdates();
-        gr = gr;
+
         assertEquals(11, gr.getQualityForItem(0));
     }
 
     @Test
     public void Backstage_passes_increases_in_quality_as_its_sell_in_value_approaches_but_cannot_exceed_50() {
-        gr = new GildedRose(new Item[]{Create.item().name(BackstagePasses.BACKSTAGE_PASSES).sellIn(100).quality(50).obj()});
+        gr = new GildedRose(new EndOfDayItemProcessor[]{Create.backstagePasses().sellIn(100).quality(50).o()});
         gr.processEndOfDayUpdates();
-        gr = gr;
+
         assertEquals(50, gr.getQualityForItem(0));
     }
 
     @Test
     public void Backstage_passes_increases_in_quality_twice_as_fast_when_within_10_days() {
-        gr = new GildedRose(new Item[]{Create.item().name(BackstagePasses.BACKSTAGE_PASSES).sellIn(10).quality(10).obj()});
+        gr = new GildedRose(new EndOfDayItemProcessor[]{Create.backstagePasses().sellIn(10).quality(10).o()});
         gr.processEndOfDayUpdates();
-        gr = gr;
+
         assertEquals(12, gr.getQualityForItem(0));
     }
 
     @Test
     public void Backstage_passes_increases_in_quality_three_times_as_fast_when_within_5_days() {
-        gr = new GildedRose(new Item[]{Create.item().name(BackstagePasses.BACKSTAGE_PASSES).sellIn(5).quality(10).obj()});
+        gr = new GildedRose(new EndOfDayItemProcessor[]{Create.backstagePasses().sellIn(5).quality(10).o()});
         gr.processEndOfDayUpdates();
-        gr = gr;
+
         assertEquals(13, gr.getQualityForItem(0));
     }
 
     @Test
     public void Backstage_passes_quality_goes_to_zero_after_the_show() {
-        gr = new GildedRose(new Item[]{Create.item().name(BackstagePasses.BACKSTAGE_PASSES).isExpired().obj()});
+        gr = new GildedRose(new EndOfDayItemProcessor[]{Create.backstagePasses().isExpired().o()});
         gr.processEndOfDayUpdates();
-        gr = gr;
+
         assertEquals(0, gr.getQualityForItem(0));
     }
 
