@@ -1,31 +1,31 @@
 package com.gildedrose;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class GildedRose {
 
     Item[] items;
+    private final List<EndOfDayItemProcessor> itemProcessors;
 
     public GildedRose(Item[] items) {
         this.items = items;
+        itemProcessors = new ArrayList<>(items.length);
+        for (Item i : items) {
+            if (Sulfras.SULFURAS.equals(i.name))
+                itemProcessors.add(new Sulfras(i));
+            else if (AgedBrie.AGED_BRIE.equals(i.name))
+                itemProcessors.add(new AgedBrie(i));
+            else if (BackstagePasses.BACKSTAGE_PASSES.equals(i.name))
+                itemProcessors.add(new BackstagePasses(i));
+            else
+                itemProcessors.add(new StandardItem(i));
+        }
     }
 
     public void processEndOfDayUpdates() {
-        for (Item item : items) {
-            if (Sulfras.SULFURAS.equals(item.name)) {
-                new Sulfras(item).process();
-                continue;
-            }
-
-            if (AgedBrie.AGED_BRIE.equals(item.name)) {
-                new AgedBrie(item).process();
-                continue;
-            }
-
-            if (BackstagePasses.BACKSTAGE_PASSES.equals(item.name)) {
-                new BackstagePasses(item).process();
-                continue;
-            }
-
-            new StandardItem(item).process();
+        for (EndOfDayItemProcessor ip : itemProcessors) {
+            ip.process();
         }
     }
 
